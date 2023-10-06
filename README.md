@@ -23,10 +23,10 @@ pip install -r requirements.txt
 ## Использование
 Создание интентов в DialogFlow
 
-Выполните скрипт create_dialofflow_intent.py для создания интентов в DialogFlow:
+Выполните скрипт create_dialogflow_intent.py для создания интентов в [DialogFlow](https://dialogflow.cloud.google.com/).
 
 ```
-python create_intents.py
+python create_dialogflow_intent.py
 ```
 Запуск скрипта в telegram командой:
 ```
@@ -38,6 +38,9 @@ python tg_bot.py
 python vk_bot.py
 ```
 Пример использования в telegram:
+![devman112](https://github.com/Kisly93/Game_verbs/assets/123402270/5c461aed-92e5-4fbc-bc3b-c4a0d05c0579)
+
+
 ## Цели проекта
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/)
 
