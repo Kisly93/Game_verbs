@@ -4,7 +4,6 @@ google-auth==2.23.2
 google-cloud-api-keys==0.5.3
 google-cloud-dialogflow==2.25.0
 googleapis-common-protos==1.60.0
-python-dotenv==1.0.0
 python-telegram-bot==13.15
 requests==2.31.0
 vk-api==11.9.9
