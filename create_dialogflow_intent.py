@@ -27,6 +27,7 @@ def create_intent(project_id, intent_name, training_phrases, response_text):
 
     print("Intent created: {}".format(response.name))
 
+
 def main():
     parser = argparse.ArgumentParser(description='Создание DialogFlow intents.')
     parser.add_argument('--phrases_file', type=str, default='phrases.json', help='Путь к Json файлу с фразами.')
@@ -45,6 +46,7 @@ def main():
         create_intent(project_id, intent_name, questions, answer)
 
     print("Intents успешно созданы в DialogFlow.")
+
 
 if __name__ == '__main__':
     main()
