@@ -1,11 +1,8 @@
 import json
 from google.cloud import dialogflow_v2 as dialogflow
 from environs import Env
+import argparse
 
-env = Env()
-env.read_env()
-
-project_id = env('PROJECT_ID')
 
 def create_intent(project_id, intent_name, training_phrases, response_text):
     intents_client = dialogflow.IntentsClient()
@@ -31,7 +28,15 @@ def create_intent(project_id, intent_name, training_phrases, response_text):
     print("Intent created: {}".format(response.name))
 
 def main():
-    with open('phrases.json', 'r', encoding='utf-8') as file:
+    parser = argparse.ArgumentParser(description='Создание DialogFlow intents.')
+    parser.add_argument('--phrases_file', type=str, default='phrases.json', help='Путь к Json файлу с фразами.')
+    args = parser.parse_args()
+
+    env = Env()
+    env.read_env()
+    project_id = env('PROJECT_ID')
+
+    with open(args.phrases_file, 'r', encoding='utf-8') as file:
         intents_data = json.load(file)
 
     for intent_name, intent_data in intents_data.items():
