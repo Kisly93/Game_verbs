@@ -28,6 +28,11 @@ pip install -r requirements.txt
 ```
 python create_dialogflow_intent.py
 ```
+Также можете указать свой путь к json файлу с фразами:
+```
+python create_dialogflow_intent.py --phrases_file /path/to/your/phrases.json
+
+```
 Запуск скрипта в telegram командой:
 ```
 python tg_bot.py
