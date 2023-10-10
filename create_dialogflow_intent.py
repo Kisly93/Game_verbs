@@ -1,4 +1,6 @@
 import json
+import logging
+
 from google.cloud import dialogflow_v2 as dialogflow
 from environs import Env
 import argparse
@@ -23,9 +25,11 @@ def create_intent(project_id, intent_name, training_phrases, response_text):
         messages=[message]
     )
 
-    response = intents_client.create_intent(parent=parent, intent=intent)
-
-    print("Intent created: {}".format(response.name))
+    try:
+        response = intents_client.create_intent(parent=parent, intent=intent)
+        logging.info("Intent созданы: {}".format(response.name))
+    except Exception as e:
+        logging.error(f'Произошла ошибка: {e}')
 
 
 def main():
@@ -45,8 +49,7 @@ def main():
         answer = intent_data.get('answer', '')
         create_intent(project_id, intent_name, questions, answer)
 
-    print("Intents успешно созданы в DialogFlow.")
-
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     main()
