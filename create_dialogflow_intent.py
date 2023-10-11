@@ -25,11 +25,8 @@ def create_intent(project_id, intent_name, training_phrases, response_text):
         messages=[message]
     )
 
-    try:
-        response = intents_client.create_intent(parent=parent, intent=intent)
-        logging.info("Intent созданы: {}".format(response.name))
-    except Exception as e:
-        logging.error(f'Произошла ошибка: {e}')
+    response = intents_client.create_intent(parent=parent, intent=intent)
+    logging.info("Intent созданы: {}".format(response.name))
 
 
 def main():
@@ -41,13 +38,17 @@ def main():
     env.read_env()
     project_id = env('PROJECT_ID')
 
-    with open(args.phrases_file, 'r', encoding='utf-8') as file:
-        intents_data = json.load(file)
+    try:
+        with open(args.phrases_file, 'r', encoding='utf-8') as file:
+            intents_data = json.load(file)
 
-    for intent_name, intent_data in intents_data.items():
-        questions = intent_data.get('questions', [])
-        answer = intent_data.get('answer', '')
-        create_intent(project_id, intent_name, questions, answer)
+        for intent_name, intent_data in intents_data.items():
+            questions = intent_data.get('questions', [])
+            answer = intent_data.get('answer', '')
+            create_intent(project_id, intent_name, questions, answer)
+
+    except Exception as e:
+        logging.error(f'Произошла ошибка: {e}')
 
 
 if __name__ == '__main__':
