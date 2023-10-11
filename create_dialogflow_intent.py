@@ -33,7 +33,7 @@ def main():
     parser = argparse.ArgumentParser(description='Создание DialogFlow intents.')
     parser.add_argument('--phrases_file', type=str, default='phrases.json', help='Путь к Json файлу с фразами.')
     args = parser.parse_args()
-
+    logging.basicConfig(level=logging.INFO)
     env = Env()
     env.read_env()
     project_id = env('PROJECT_ID')
@@ -52,5 +52,4 @@ def main():
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
     main()
